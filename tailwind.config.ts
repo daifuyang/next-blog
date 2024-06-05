@@ -8,6 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        'container': '1336px',
+      },
+      colors: {
+        'color-title': '#242424',
+        'color-desc': '#6b6b6b',
+        'custom-gray': '#f2f2f2'
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

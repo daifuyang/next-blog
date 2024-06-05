@@ -1,113 +1,228 @@
-import Image from "next/image";
+import List from "@/app/ui/list";
+import Pagination from "./ui/pagination";
+import Recommend from "./ui/widget/recommend";
+import Category from "./ui/widget/category";
+import Tag from "./ui/widget/tag";
 
 export default function Home() {
+  const data = [
+    {
+      title: "Next.js 入门教程",
+      desc: "学习如何使用 Next.js 构建你的第一个服务器渲染的 React 应用。"
+    },
+    {
+      title: "深入了解 Next.js 的静态生成",
+      desc: "了解如何使用 Next.js 的静态生成功能提升网站性能和 SEO。"
+    },
+    {
+      title: "Next.js 动态路由指南",
+      desc: "掌握 Next.js 动态路由的使用技巧，创建更灵活的应用。"
+    },
+    {
+      title: "使用 Next.js 创建 API 路由",
+      desc: "探索在 Next.js 中创建和使用 API 路由的方法。"
+    },
+    {
+      title: "优化你的 Next.js 应用",
+      desc: "学习优化 Next.js 应用性能的最佳实践和策略。"
+    },
+    {
+      title: "Next.js 与 Tailwind CSS 集成",
+      desc: "结合 Next.js 和 Tailwind CSS 构建美观且高效的用户界面。"
+    },
+    {
+      title: "Next.js 应用的安全性",
+      desc: "了解如何保护你的 Next.js 应用免受常见安全威胁。"
+    },
+    {
+      title: "在 Next.js 中实现国际化",
+      desc: "学习如何在 Next.js 应用中添加多语言支持。"
+    },
+    {
+      title: "从 React 迁移到 Next.js",
+      desc: "了解从 React 迁移到 Next.js 的步骤和注意事项。"
+    },
+    {
+      title: "Next.js 的部署与优化",
+      desc: "掌握将 Next.js 应用部署到生产环境并进行优化的方法。"
+    }
+  ];
+
+  const category = [
+    {
+      id: 1,
+      title: "React",
+      desc: "",
+      children: [
+        {
+          id: 11,
+          title: "状态管理",
+          desc: "",
+          children: [
+            {
+              id: 111,
+              title: "Redux",
+              desc: "一个用于JavaScript应用的可预测状态容器。"
+            },
+            {
+              id: 112,
+              title: "MobX",
+              desc: "简单、可扩展的状态管理。"
+            }
+          ]
+        },
+        {
+          id: 12,
+          title: "组件库",
+          desc: "",
+          children: [
+            {
+              id: 121,
+              title: "Material-UI",
+              desc: "用于更快更容易的Web开发的React组件。"
+            },
+            {
+              id: 122,
+              title: "Ant Design",
+              desc: "具有自然和确定性价值的设计系统，用于提升企业应用的用户体验。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: "Go",
+      desc: "",
+      children: [
+        {
+          id: 21,
+          title: "Web框架",
+          desc: "",
+          children: [
+            {
+              id: 211,
+              title: "Gin",
+              desc: "一个用Go编写的Web框架。"
+            },
+            {
+              id: 212,
+              title: "Echo",
+              desc: "高性能、可扩展的简约Go Web框架。"
+            }
+          ]
+        },
+        {
+          id: 22,
+          title: "数据库驱动",
+          desc: "",
+          children: [
+            {
+              id: 221,
+              title: "GORM",
+              desc: "一个出色的Golang ORM库。"
+            },
+            {
+              id: 222,
+              title: "MongoDB驱动",
+              desc: "MongoDB的Go驱动程序。"
+            }
+          ]
+        }
+      ]
+    }
+  ];
+
+  const tags = [
+    {
+      id: 1,
+      name: "React"
+    },
+    {
+      id: 2,
+      name: "React Hooks"
+    },
+    {
+      id: 3,
+      name: "Redux"
+    },
+    {
+      id: 4,
+      name: "MobX"
+    },
+    {
+      id: 5,
+      name: "Material-UI"
+    },
+    {
+      id: 6,
+      name: "Ant Design"
+    },
+    {
+      id: 7,
+      name: "React Router"
+    },
+    {
+      id: 8,
+      name: "Next.js"
+    },
+    {
+      id: 9,
+      name: "Create React App"
+    },
+    {
+      id: 10,
+      name: "Go"
+    },
+    {
+      id: 11,
+      name: "Gin"
+    },
+    {
+      id: 12,
+      name: "Echo"
+    },
+    {
+      id: 13,
+      name: "GORM"
+    },
+    {
+      id: 14,
+      name: "MongoDB Driver"
+    },
+    {
+      id: 15,
+      name: "Go Modules"
+    },
+    {
+      id: 16,
+      name: "Go Concurrency"
+    },
+    {
+      id: 17,
+      name: "Go Testing"
+    },
+    {
+      id: 18,
+      name: "Go WebAssembly"
+    }
+  ];
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="max-w-container m-auto">
+      <div className="flex flex-row justify-evenly">
+        <main className="max-w-[728px] min-w-[728px] flex-1 block">
+          <List data={data} />
+          <Pagination />
+        </main>
+        <div className="max-w-[368px] min-w-[368px] border-l pl-10 pr-6 border-custom-gray">
+          <div className="sticky top-0 z-40 mt-10">
+            <Recommend data={data} />
+            <Category data={category} />
+            <Tag data={tags} />
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
