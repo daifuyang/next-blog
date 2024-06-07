@@ -1,0 +1,28 @@
+html,
+        body,
+        #root {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #root {
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+
+        .loading-title {
+          font-size: 1.1rem;
+        }
+
+        .loading-sub-title {
+          margin-top: 20px;
+          font-size: 1rem;
+          color: #888;
+        }
+
+        .page-loading-warp {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 26px;
+        }

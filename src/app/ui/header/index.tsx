@@ -4,7 +4,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-custom-gray">
-      <div className="max-w-container mx-auto h-[57px] flex items-center justify-between">
+      <div className="max-w-container mx-auto px-6 h-[57px] flex items-center justify-between">
         <div className="flex items-center leading-normal">
           <h1 className="font-bold text-lg">全栈成长指南</h1>
           <nav className="ml-10 text-sm leading-6 font-semibold text-slate-700 dark:text-slate-200">

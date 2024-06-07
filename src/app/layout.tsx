@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import { headers } from "next/headers";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,12 +15,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  const pathname = headersList.get("pathname");
+  let layout: any = (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
+  if (pathname?.startsWith("/admin")) {
+    layout = <>{children}</>;
+  }
+
   return (
     <html lang="zh">
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <AntdRegistry>{layout}</AntdRegistry>
       </body>
     </html>
   );
