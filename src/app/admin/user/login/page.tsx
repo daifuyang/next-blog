@@ -49,7 +49,7 @@ const useStyles = createStyles(({ token }) => {
       height: "100vh",
       overflow: "auto",
       backgroundImage:
-        "url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')",
+        "url('/images/admin/login/bg.png')",
       backgroundSize: "100% 100%"
     }
   };
@@ -105,12 +105,12 @@ const Login: React.FC = () => {
             maxWidth: "75vw"
           }}
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
-          subTitle="Ant Design 是西湖区最具影响力的 Web 设计规范"
+          title={process.env.NEXT_PUBLIC_ADMIN_TITLE}
+          subTitle={process.env.NEXT_PUBLIC_ADMIN_DESC}
           initialValues={{
             autoLogin: true
           }}
-          actions={["其他登录方式", <ActionIcons key="icons" />]}
+          // actions={["其他登录方式", <ActionIcons key="icons" />]}
           onFinish={async (values) => {}}
         >
           <Tabs
@@ -122,10 +122,10 @@ const Login: React.FC = () => {
                 key: "account",
                 label: "账户密码登录"
               },
-              {
-                key: "mobile",
-                label: "手机号登录"
-              }
+              // {
+              //   key: "mobile",
+              //   label: "手机号登录"
+              // }
             ]}
           />
 
