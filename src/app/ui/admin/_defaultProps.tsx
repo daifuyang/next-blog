@@ -21,15 +21,8 @@ const routes = {
         icon: <FileTextOutlined />,
         routes: [
           {
-            path: "/admin/article/article",
-            name: "文章内容",
-            routes: [
-              {
-                path: "/admin/article/article/list",
-                name: "文章列表",
-                hideInMenu: true
-              }
-            ]
+            path: "/admin/article/list",
+            name: "文章列表"
           },
           {
             path: "/admin/article/category",
@@ -45,38 +38,38 @@ const routes = {
         ]
       },
       {
-        path: "/admin/background",
+        path: "/admin/manage",
         name: "后台管理",
         icon: <UserOutlined />,
         routes: [
           {
-            path: "/admin/background/admin-user",
+            path: "/admin/manage/admin-user",
             name: "管理员",
             routes: [
               {
-                path: "/admin/background/admin-user/list",
+                path: "/admin/manage/admin-user/list",
                 name: "管理员列表",
                 hideInMenu: true
               }
             ]
           },
           {
-            path: "/admin/background/role",
+            path: "/admin/manage/role",
             name: "角色管理",
             routes: [
               {
-                path: "/admin/background/role/list",
+                path: "/admin/manage/role/list",
                 name: "角色列表",
                 hideInMenu: true
               }
             ]
           },
           {
-            path: "/admin/background/log",
+            path: "/admin/manage/log",
             name: "日志管理",
             routes: [
               {
-                path: "/admin/background/log/list",
+                path: "/admin/manage/log/list",
                 name: "日志列表",
                 hideInMenu: true
               }
