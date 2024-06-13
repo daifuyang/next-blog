@@ -52,7 +52,7 @@ model cmsUserToken {
 }
 
 // 定义用户角色模型
-model cmsUserRole {
+model cmsRole {
   id          Int     @id @default(autoincrement()) @map("id")
   name        String  @unique @map("name") // 角色名称，唯一
   description String? @map("description") @db.VarChar(200) // 角色描述
@@ -63,6 +63,15 @@ model cmsUserRole {
   createdAt   Int     @map("created_at")
   updatedAt   Int     @map("updated_at")
   deletedAt   Int     @default(0) @map("deleted_at")
+
+  @@map("cms_role")
+}
+
+// 定义用户角色关联表
+model cmsUserRole {
+  id        Int    @id @default(autoincrement()) @map("id")
+  userId   Int    @map("user_id")
+  roleId   Int    @map("role_id")
 
   @@map("cms_user_role")
 }
