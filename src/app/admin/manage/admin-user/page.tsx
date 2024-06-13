@@ -7,7 +7,7 @@ import { Skeleton } from "antd";
 export default function Admin() {
   const router = useRouter();
   useEffect(() => {
-    router.push("/admin/background/admin-user/list");
+    router.push("/admin/manage/admin-user/list");
   }, []);
   return <Skeleton />
 }
