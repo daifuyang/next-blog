@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { now } from "@/app/lib/date";
 import api from "@/app/lib/response";
-import { createUser, getTotal, getUserList, updateUser } from "@/app/model/user";
+import { createUser, getUserTotal, getUserList, updateUser } from "@/app/model/user";
 import { NextRequest } from "next/server";
 import _ from "lodash";
 import { Prisma } from "@prisma/client";
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     | any = {};
 
   if (pageSize !== "0") {
-    const total = await getTotal(query);
+    const total = await getUserTotal(query);
     pagination.current = Number(current);
     pagination.pageSize = Number(pageSize);
     pagination.total = total;
