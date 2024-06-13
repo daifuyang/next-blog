@@ -6,7 +6,7 @@ import _ from "lodash";
 const userIdKey = `nextblog:user:id:`;
 
 // 获取总用户数
-export async function getTotal(where: Prisma.cmsUserWhereInput = {}, tx = prisma) {
+export async function getUserTotal(where: Prisma.cmsUserWhereInput = {}, tx = prisma) {
   return await tx.cmsUser.count({
     where: {
       ...where,
@@ -46,8 +46,8 @@ export async function getUserList(
   return await tx.cmsUser.findMany({
     ...query,
     where: {
-      ...where,
-      deletedAt: 0
+      deletedAt: 0,
+      ...where
     }
   });
 }
@@ -81,7 +81,7 @@ export async function getUserById(id: string) {
   if (cacahe) {
     user = JSON.parse(cacahe);
   } else {
-    user = await prisma.cmsUser.findFirst({
+    user = await prisma.cmsUser.findUnique({
       where: {
         id: Number(id),
         deletedAt: 0
