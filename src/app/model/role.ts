@@ -126,11 +126,48 @@ export async function getRoleByName(name: string) {
 }
 
 // 绑定用户和角色的关系
-export async function bindRoleByUser(userId: number, roleId: number, tx = prisma) {
-  return await tx.cmsUserRole.create({
-    data: {
-      userId,
-      roleId
+export async function bindRoleByUser(userId: number, newRoleIds: number[], tx = prisma) {
+  
+  const userRole = await tx.cmsUserRole.findMany({
+    where: {
+      userId
+    },
+    select: {
+      roleId: true
     }
-  });
+  })
+
+const currentRoleIds = userRole.map(item => item.roleId);
+
+ // 找出需要删除的角色ID
+ const rolesToRemove = currentRoleIds.filter(roleId => !newRoleIds.includes(roleId));
+
+ // 找出需要添加的角色ID
+ const rolesToAdd = newRoleIds.filter(roleId => !currentRoleIds.includes(roleId));
+
+  // 删除多余的角色关联
+  if (rolesToRemove.length > 0) {
+    await tx.cmsUserRole.deleteMany({
+      where: {
+        userId,
+        roleId: {
+          in: rolesToRemove
+        }
+      }
+    });
+  }
+
+
+  // 添加新的角色关联
+  if (rolesToAdd.length > 0) {
+    await tx.cmsUserRole.createMany({
+      data: rolesToAdd.map(roleId => ({
+        userId,
+        roleId
+      }))
+    });
+  }
+
+  return newRoleIds
+
 }
